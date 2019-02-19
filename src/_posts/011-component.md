@@ -1,26 +1,26 @@
 ---
-title: 0.11 Component Tips
+title: 0.11 Μυστικά για Component
 date: 2014-12-08 15:02:14
 tags:
 ---
 
-<p class="tip">Note: this post contains information for the outdated 0.11 version. Please refer to the [0.12 release notes](https://github.com/yyx990803/vue/releases) for the changes in the API.</p>
+<p class="tip">Σημείωση: αυτό το άρθρο περιέχει πληροφορίες για την παρωχημένη έκδοση 0.11. Παρακαλώ διαβάστε [τις σημειώσεις έκδοσης 0.12](https://github.com/yyx990803/vue/releases) για αλλαγές που έχουν γίνει στο API.</p>
 
-The release of 0.11 introduced [many changes](https://github.com/yyx990803/vue/blob/master/changes.md), but the most important one is how the new component scope works. Previously in 0.10.x, components have inherited scope by default. That means in a child component template you can reference parent scope properties. This often leads to tightly-coupled components, where a child component assumes knowledge of what properties are present in the parent scope. It is also possible to accidentally refer to a parent scope property in a child component.
+Η έκδοση 0.11 έχει εισάγει [πολλές αλλαγές](https://github.com/yyx990803/vue/blob/master/changes.md), αλλά η σημαντικότερη είναι το πως λειτουργεί το πεδίο δράσης _(scope)_ των components λειτουργεί. Προηγουμένως, στην έκδοση 0.10.x, τα components κληρονομούσαν το πεδίο δράσης _(scope)_ εξ ορισμού. Αυτό σημαίνει, πως στο πρότυπο _(template)_ ενός υπό-component μπορείτε να κάνετε αναφορά στις ιδιότητες του γονικού πεδίου δράσης _(scope)_. Αυτό συχνά έχει ως αποτέλεσμα τα σφιχτά δεμένα components, όπου ένα υπό-component υποθέτει πως το γονικό component θα έχεις όλες τις απαιτούμενες ιδιότητες. Επίσης είναι πιθανό να γίνει κατά λάθος αναφορά σε ιδιότητες του γονικού πεδίου δράσης _(scope)_ σε ένα υπό-component.
 
 <!-- more -->
 
-### Isolated Scope and Data Passing
+### Απομονωμένο πεδίο δράσης και μεταβίβαση δεδομένων
 
-Starting in 0.11, all child components have isolated scope by default, and the recommended way to control component data access is via [Explicit Data Passing](/guide/components.html#Explicit_Data_Passing) using [`v-with`](/api/directives.html#v-with) or [`paramAttributes`](/api/options.html#paramAttributes).
+Με την έκδοση 0.11, όλα τα υπό-components έχουν απομονωμένο πεδίο δράσης _(scope)_ εξ-ορισμού, και ο προτεινόμενος τρόπος για να ελέγξετε την πρόσβαση στα δεδομένα είναι μέσω [ρητής μεταβίβασης δεδομένων](/guide/components.html#Explicit_Data_Passing) χρησιμοποιώντας [`v-with`](/api/directives.html#v-with) ή [`paramAttributes`](/api/options.html#paramAttributes).
 
-`paramAttributes` enables us to write Web Component style templates:
+Το `paramAttributes` μας επιτρέπει να γράψουμε πρότυπα Web Component:
 
 ``` js
 Vue.component('my-component', {
   paramAttributes: ['params'],
   compiled: function () {
-    console.log(this.params) // passed from parent
+    console.log(this.params) // μεταβιβάστηκε από το γονικό component
   }
 })
 ```
@@ -29,33 +29,33 @@ Vue.component('my-component', {
 <my-component params="{{params}}"></my-component>
 ```
 
-### Where Does It Belong?
+### Που ανήκει;
 
-Previously in 0.10, all directives on a component's container element are compiled in the child component's scope. Because it inherited parent scope, this worked in most situations. Starting in 0.11.1, we want to provide a cleaner separation between component scopes. The rule of thumbs is: if something appears in the parent template, it will be compiled in parent scope; if it appears in child template, it will be compiled in child scope. For example:
+Προηγουμένως, στην έκδοση 0.10, όλες οι ντιρεκτίβες σε ένα στοιχείο πλαισίου με components μεταφέρονται στο πεδίο δράσης _(scope)_ των υπό-components. Επειδή κληρονομούσαν το γονικό πεδίο δράσης _(scope)_, αυτό λειτουργούσε τις περισσότερες περιπτώσεις. Με την έκδοση 0.11.1, θέλουμε να παρέχουμε ποιο καθαρό διαχωρισμό μεταξύ των πεδίων δράσης _(scope)_ των components. Ο κανόνας είναι: Αν κάτι εμφανίζετε στο γονικό πρότυπο _(template)_, θα παραμένει στο γονικό πεδίο δράσης _(scope)_. Αν κάτι εμφανίζετε στο πρότυπο _(template)_ ενός υπό-component, θα παραμένει στο πεδίο δράσης _(scope)_ του υπό-component. Για παράδειγμα:
 
 ``` html
-<!-- parent template -->
+<!-- γονικό πρότυπο -->
 <div v-component="child" v-on="click:onParentClick">
   <p>{{parentMessage}}</p>
 </div>
 ```
 
 ``` html
-<!-- child template, with replace: true -->
+<!-- πρότυπο υπό-component, με replace: true -->
 <div v-on="click:onChildClick">
   <h1>{{childMessage}}</h1>
   <content></content>
 </div>
 ```
 
-Everything in the parent template will be compiled in the parent's scope, including the content that's going to be inserted into the child component.
+Οτιδήποτε είναι στο πρότυπο _(template)_ του γονικού component θα παραμείνει στο πεδίο δράσης _(scope)_ του γονικού component, συμπεριλαμβανομένου και του περιεχομένου που θα κληροδοτηθεί στο υπό-component
 
-The only exception to the rule is `v-with` (and `paramAttributes` which compiles down to `v-with`), which works in both places - so you don't need to worry about it too much.
+Η μόνη εξαίρεση στον κανόνα είναι το `v-with` (και `paramAttributes` που μεταφέρονται κάτω στο `v-with`), που λειτουργεί και στις δυο πλευρές, οπότε δεν πρέπει να ανησυχείτε και πολύ για αυτό.
 
-### Cleaner Event Communication
+### Καλύτερη επικοινωνία με συμβάντα
 
-Previously the standard way for a child component to communicate to its parent is via dispatching events. However, with this approach, the event listeners on the parent component are not guaranteed to be listening on the desired child component only. It's also possible to trigger undesired listeners further up the chain if we do not cancel the event.
+Στην προηγούμενη έκδοση ο εξ ορισμού τρόπος επικοινωνίας ενός υπό-component με το γονικό του component ήταν μέσω αποστολής συμβάντων. Ωστόσο, με αυτή την προσέγγιση, οι ακροατές συμβάντων στο γονικό component δεν είναι εγγυημένο πως θα ακούν μόνο το επιθυμητό υπό-component. Είναι επίσης δυνατόν να ενεργοποιηθούν ακροατές ποιο ψηλά στην ιεραρχία των components αν δεν ακυρώσουμε το συμβάν.
 
-The most common use case is for a parent to react to the events from a specific, direct child component. So in 0.11.4, [a new directive `v-events`](/api/directives.html#v-events) has been introduced to enable exactly this behavior.
+Η ποιο κοινή χρήση είναι ένας γονέας να αντιδρά στα συμβάντα συγκεκριμένων, άμεσων υπό-components. Έτσι, στην έκδοση 0.11.4, [η νέα ντιρεκτίβα `v-events`](/api/directives.html#v-events) έχει εισαχθεί για να ενεργοποιήσει αυτή ακριβώς την συμπεριφορά.
 
-0.11.4 has already been released, go try it out!
+Η έκδοση 0.11.4 έχει ήδη δημοσιευθεί, οπότε δοκιμάστε την!
