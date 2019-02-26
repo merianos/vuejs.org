@@ -1,4 +1,4 @@
-site_description: Vue.js - The Progressive JavaScript Framework
+site_description: Vue.js - Το προοδευτικό JavaScript Framework
 google_analytics: UA-46852172-1
 root_domain: vuejs.org
 vue_version: 2.5.16
@@ -8,7 +8,7 @@ platinum_sponsors_china:
 special_sponsors:
   - url: 'https://stdlib.com/'
     img: stdlib.png
-    description: 'Build APIs you need in minutes instead of days, for free.'
+    description: 'Δημιουργήστε τα APIs που χρειάζεστε σε μερικά λεπτά αντί για ημέρες, δωρεάν.'
 platinum_sponsors:
   - url: >-
       https://www.bitsrc.io/?utm_source=vue&utm_medium=vue&utm_campaign=vue&utm_term=vue&utm_content=vue
