@@ -1,13 +1,12 @@
-<h1>Sponsor Vue.js Development</h1>
+<h1>Υποστηρίξτε την ανάπτυξη του Vue.js</h1>
 
 <p>
-Vue.js is an MIT licensed open source project and completely free to use.
-However, the amount of effort needed to maintain and develop new features for the project is not sustainable without proper financial backing. You can support Vue.js development via the following methods:
+  To Vue.js είναι ένα έργο ανοικτού κώδικα δωρεάν προς χρήση με άδεια χρήσης MIT. Ωστόσο, το μέγεθος της προσπάθειας που απαιτείτε για την συντήρηση και την ανάπτυξη νέων χαρακτηριστικών για το έργο δεν είναι βιώσιμη χωρίς κατάλληλη οικονομική στήριξη. Μπορείτε να στηρίξετε την ανάπτυξη του Vue.js με τους ακόλουθους τρόπους:
 </p>
 
-<h2 id="One-time-Donations">One-time Donations</h2>
+<h2 id="One-time-Donations">Κάντε μια χορηγία</h2>
 
-<p>We accept donations through these channels:</p>
+<p>Δεχόμαστε χορηγίες μέσω των ακόλουθων καναλιών:</p>
 
 <div id="one-time-donations">
   <a href="https://www.paypal.me/evanyou" target="_blank">
@@ -21,7 +20,7 @@ However, the amount of effort needed to maintain and develop new features for th
 </div>
 
 <div id="coin-details" v-if="type && coins[type]">
-  <p>{{ coins[type].name }} Address:<br>{{ coins[type].address }}</p>
+  <p>{{ coins[type].name }} Διεύθυνση:<br>{{ coins[type].address }}</p>
   <img :src="'/images/coin-' + type + '.png'">
 </div>
 <script>
@@ -54,24 +53,24 @@ window.addEventListener('hashchange', function () {
 })
 </script>
 
-<h2 id="Recurring-Pledges">Recurring Pledges</h2>
+<h2 id="Recurring-Pledges">Επαναλαμβανόμενες χορηγίες</h2>
 
 <p>
-Recurring pledges come with exclusive perks, e.g. having your name listed in the Vue GitHub repository, or have your company logo placed on this website.
+  Οι επαναλαμβανόμενες χορηγίες έχουν ειδικά προνόμια, πχ. εμφανίζουμε το όνομα σας στο GitHub, η βάζουμε το λογότυπο σας στην ιστοσελίδα μας.
 </p>
 
 <ul>
   <li>
-    <a href="https://www.patreon.com/evanyou" target="_blank">Become a backer or sponsor via Patreon</a> (goes directly to support Evan You's full-time work on Vue)
+    <a href="https://www.patreon.com/evanyou" target="_blank">Γίνετε ένας υποστηρικτής μέσω του Patreon</a> (goes directly to support Evan You's full-time work on Vue)
   </li>
   <li>
     <a href="https://opencollective.com/vuejs">Become a backer or sponsor via OpenCollective</a> (goes into a fund with transparent expense models supporting community efforts and events)
   </li>
 </ul>
 
-<h2>Current Premium Sponsors:</h2>
+<h2>Τρέχοντες Κορυφαίοι Χορηγοί:</h2>
 
-<h3>Special Sponsors</h3>
+<h3>Ειδικοί Χορηγοί</h3>
 
 <p class="platinum">
 <%_ for (const sponsor of theme.special_sponsors) {_%>
@@ -81,7 +80,7 @@ Recurring pledges come with exclusive perks, e.g. having your name listed in the
 <%_ } _%>
 </p>
 
-<h3>Platinum</h3>
+<h3>Πλατινένιοι</h3>
 
 <p class="platinum">
 <%_ for (const sponsor of theme.platinum_sponsors) {_%>
@@ -91,7 +90,7 @@ Recurring pledges come with exclusive perks, e.g. having your name listed in the
 <%_ } _%>
 </p>
 
-<h3>OpenCollective Platinum</h3>
+<h3>OpenCollective Πλατινένιοι</h3>
 
 <p class="open-collective-sponsors sponsor-section">
 <%_ for (let i = 0; i < 10; i++) {_%>
@@ -101,7 +100,7 @@ Recurring pledges come with exclusive perks, e.g. having your name listed in the
 <%_ } _%>
 </p>
 
-<h3>Special Sponsors (China)</h3>
+<h3>Ειδικοί Χορηγοί (Κίνα)</h3>
 
 <p class="platinum">
 <%_ for (const sponsor of theme.platinum_sponsors_china) {_%>
@@ -111,7 +110,7 @@ Recurring pledges come with exclusive perks, e.g. having your name listed in the
 <%_ } _%>
 </p>
 
-<h3>Patreon Gold</h3>
+<h3>Patreon Χρυσοί</h3>
 
 <p class="patreon-sponsors sponsor-section">
 <%_ for (const sponsor of theme.gold_sponsors) {_%>
@@ -121,7 +120,7 @@ Recurring pledges come with exclusive perks, e.g. having your name listed in the
 <%_ } _%>
 </p>
 
-<h3>OpenCollective Gold</h3>
+<h3>OpenCollective Χρυσοί</h3>
 
 <p class="open-collective-sponsors sponsor-section">
 <%_ for (let i = 0; i < 10; i++) {_%>
@@ -131,7 +130,7 @@ Recurring pledges come with exclusive perks, e.g. having your name listed in the
 <%_ } _%>
 </p>
 
-<h3>Patreon Silver</h3>
+<h3>Patreon Ασημένιοι</h3>
 
 <p class="patreon-sponsors sponsor-section">
 <%_ for (const sponsor of theme.silver_sponsors) {_%>
@@ -141,7 +140,7 @@ Recurring pledges come with exclusive perks, e.g. having your name listed in the
 <%_ } _%>
 </p>
 
-<h3>OpenCollective Silver</h3>
+<h3>OpenCollective Ασημένιοι</h3>
 
 <p class="open-collective-sponsors sponsor-section">
 <%_ for (let i = 0; i < 5; i++) {_%>
@@ -152,9 +151,9 @@ Recurring pledges come with exclusive perks, e.g. having your name listed in the
 </p>
 
 <p>
-If you run a business and are using Vue in a revenue-generating product, it makes business sense to sponsor Vue development: <b>it ensures the project that your product relies on stays healthy and actively maintained.</b> It can also help your exposure in the Vue community and makes it easier to attract Vue developers.
+  Αν έχετε εταιρεία και χρησιμοποιείτε το Vue για προϊόντα που παράγουν έσοδα, έχει νόημα σε επίπεδο επιχειρήσεων να κάνετε χορηγίες για την ανάπτυξη του Vue: <b>γιατί διασφαλίζει πως το έργο από το εξαρτάτε το προϊόν σας θα παραμείνει υγείες και θα συντηρείτε ενεργά.</b> Μπορεί επίσης να βοηθήσει στην έκθεση σας στην κοινότητα του Vue και να είναι ευκολότερο να προσελκύσετε προγραμματιστές Vue.
 </p>
 
 <p>
-If you are an individual user and have enjoyed the productivity of using Vue, consider donating as a sign of appreciation - like buying me coffee once in a while :)
+  Αν είστε ένας μεμονωμένος χρήστης που απολαμβάνει την αυξημένο βαθμό παραγωγικότητας του Vue, σκεφτείτε να κάνετε μια δωρεά ως ένδειξη εκτίμησης, και θα είναι σαν να μου αγοράζετε ένα καφέ μια φορά στο τόσο :)
 </p>
