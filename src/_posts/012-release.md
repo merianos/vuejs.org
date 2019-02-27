@@ -1,90 +1,91 @@
 ---
-title: Vue.js 0.12 released!
+title: Κυκλοφόρησε η έκδοση 0.12 του Vue.js 0.12!
 date: 2015-06-11 17:37:30
 ---
 
-I'm really excited to announce that [Vue.js 0.12: Dragon Ball](https://github.com/yyx990803/vue/releases/tag/0.12.0) is finally here! Thanks to everyone who tried out the beta/rc versions and provided feedback / bug reports along the way.
+Είμαι ενθουσιασμένος που ανακοινώνω πως η έκδοση [Vue.js 0.12: Dragon Ball](https://github.com/yyx990803/vue/releases/tag/0.12.0) είναι τελικά εδώ! Ευχαριστούμε όλους όσους δοκίμασαν τις εκδόσεις beta/rc και μας παρείχαν αναφορές ανατροφοδότησης / σφαλμάτων σε όλη την διαδρομή μέχρι εδώ.
 
-There's a lot to cover in this release, and we will talk about a few highlights below. However, it is still recommended to carefully go through the [Full Release Note](https://github.com/yyx990803/vue/releases/tag/0.12.0) and updated docs if you are upgrading from 0.11. You can report bugs on GitHub, send questions to [vuejs/Discussion](https://github.com/vuejs/Discussion/issues), or join us in the [Gitter chat channel](https://gitter.im/yyx990803/vue).
+Αυτή η έκδοση καλύπτει πάρα πολλά, και για αυτό θα μιλήσουμε μόνο για μερικά  σημαντικά σημεία παρακάτω. Ωστόσο, είναι σημαντικό να διαβάσετε προσεκτικά την [Πλήρη Αναφορά Έκδοσης](https://github.com/yyx990803/vue/releases/tag/0.12.0) και τα ενημερωμένα έγγραφα αν αναβαθμίζεστε από την έκδοση 0.11. Μπορείτε να αναφαίρετε σφάλματα στο GitHub, να στείλετε ερωτήσεις στο [vuejs/Discussion](https://github.com/vuejs/Discussion/issues), ή να μπείτε στην παρέα μας στο [Gitter chat channel](https://gitter.im/yyx990803/vue).
 
 <!-- more -->
 
-### More Consistent Component Syntax
+### Ποιο Σταθερό Συντακτικό για τα Components
 
-Previously in 0.11 you have two ways to use a Vue.js component: using the `v-component` directive, or using custom elements. There are also two ways to pass data down to child components: using the `v-with` directive, or using the `paramAttributes` option. Although both custom elements and param attributes get compiled down to directives eventually, it is confusing and redundant to have two sets of syntax for the same functionality.
+Προηγουμένως, στην έκδοση 0.11 είχατε δυο τρόπους να χρησιμοποιήσετε τα Components του Vue.js: είτε χρησιμοποιώντας την ντιρεκτίβα `v-component`, είτε χρησιμοποιώντας δικά σας στοιχεία. Υπάρχουν επίσης δυο τρόποι για να μεταφέρετε δεδομένα σε υπό-στοιχεία _(child components)_: είτε χρησιμοποιώντας την ντιρεκτίβα `v-with`, είτε χρησιμοποιώντας την ιδιότητα `paramAttributes`. Αν και τόσο δικά σας στοιχεία όσο και οι ιδιότητες param μεταφράζονται τελικά σε ντιρεκτίβες, Αν και τόσο δικά σας στοιχεία όσο και οι ιδιότητες param μεταφράζονται τελικά σε ντιρεκτίβες, μπερδεύουν και είναι περιττό να έχεις δυο σύνολα συντακτικού για την ίδια λειτουργικότητα.
 
-In addition, it should be noted that the component system is a first-class concept in Vue.js, even more important than directives. It defines how we encapsulate our higher-level view logic and compose our application. In the meanwhile, having a clear and declarative way to pass data into child components is also very important. Components and param attributes really deserve their own dedicated syntax to differentiate from other directives.
+Επιπλέον, θα πρέπει να σημειωθεί πως το σύστημα των στοιχείων _(components)_ αποτελούν βασική ιδέα στο Vue.js, και είναι ακόμα ποιο σημαντικά και από τις ντιρεκτίβες. Τα στοιχεία _(components)_ ορίζουν το τρόπο που ενθυλακώνουμε την λογική προβολής υψηλού επιπέδου και την σύνθεση της εφαρμογής μας. Την ίδια στιγμή, είναι πολύ σημαντικό να υπάρχει ένα καθαρός και δηλωτικός τρόπος για την μεταβίβαση δεδομένων σε υπό-στοιχεία _(child components)_. Τα στοιχεία _(components)_ και οι ιδιότητες param αξίζουν πραγματικά το δικό τους συντακτικό για να διαφοροποιηθούν από τις άλλες ντιρεκτίβες.
 
-As a result, `v-component` and `v-with` have been deprecated in 0.12. `paramAttributes` has also been renamed to `props`, which is shorter and cleaner. From now on, most Vue.js components will look like this:
+Ως αποτέλεσμα, οι `v-component` και `v-with` έχουν απαγορευτεί στην έκδοση 0.12. Η `paramAttributes` έχει επίσης μετονομαστεί σε `props`, που είναι ποιο σύντομη και ποιο καθαρή. Από εδώ και στο εξής, τα περισσότερα στοιχεία _(components)_ του Vue.js θα μοιάζουν με το ακόλουθο:
 
 ``` html
 <my-component prop="{{parentData}}"></my-component>
 ```
 
-There are also additional props-related improvements such as explicit one-time or one-way props, expression as props, methods as prop callbacks and more. You can find out more details in the 0.12 release notes linked above and the updated [Component System](/guide/components.html) section of the guide.
+Υπάρχουν επίσης επιπλέον βελτιώσεις σχετικά με τα props, όπως ρητές μιας φοράς ή μιας κατεύθυνσης props, εκφράσεις ως props, μέθοδοι ανάκλησης ως props και άλλα. Μπορείτε να βρείτε περισσότερες πληροφορίες στης σημειώσεις έκδοσης της 0.12 που αναφέραμε παραπάνω και στο ενημερωμένο τμήμα του οδηγού για το [Σύστημα Στοιχείων](/guide/components.html).
 
-### Filter Arguments Improvements
+### Βελτίωση Παραμέτρων στα Φίλτρα
 
-In 0.11, filters always receive their arguments as plain strings. An argument can be enclosed in quotes to include whitespace, but the quotes are not automatically stripped when passed into the filter function. Some users were also confused about how to retrieve a dynamic value on the vm instead of a plain string.
+Στην έκδοση 0.11,  τα φίλτρα πάντα λαμβάνουν τις παραμέτρους τους ως απλό κείμενο. Μια παράμετρος μπορεί να εσωκλείεται σε εισαγωγικά για να περιέχει λευκούς χαρακτήρες _(καινά, νέες γραμμές, κα.)_, αλλά τα εισαγωγικά δεν αφαιρούνται αυτόματα όταν η παράμετρος περάσει στην συνάρτηση του φίλτρου. Επίσης, κάποιοι χρήστες μπερδεύονται όταν πρέπει να ανακτήσουν δυναμικές τιμές στο vm αντί για απλό κείμενο.
 
-In 0.12, the filter argument syntax now follows a simple rule: if an argument is enclosed in quotes, it will be passed in as a plain string; otherwise, it will be evaluated against the current vm as a dynamic value.
+Στην έκδοση 0.12, το συντακτικό των παραμέτρων στα φίλτρα ακολουθεί απλούς κανόνες: Αν μια παράμετρος εσωκλείεται σε εισαγωγικά, θα μεταφερθεί στην συνάρτηση του φίλτρου ως απλό κείμενο, διαφορετικά, θα αξιολογηθεί με βάση τρέχων vm ως δυναμική τιμή.
 
-This means the usage of some existing filters will have to change:
+Αυτό σημαίνει πως η χρήση κάποιον υφιστάμενων φίλτρον θα πρέπει να αλλάξουν:
 
 ``` html
 <a v-on="keyup: onKeyUp | key 'enter'"></a>
 {{ items.length | pluralize 'item' }}
 ```
 
-But it would make custom filters that rely on dynamic values much easier to write:
+Αλλά θα κάνει προσαρμοσμένα φίλτρα που εξαρτώνται από δυναμικές τιμές να είναι ποιο εύκολα στην συγγραφή τους:
 
 ``` html
 {{ msg | concat otherMsg }}
 ```
 
-Here the first argument to the `concat` filter will be the value of `this.otherMsg`.
+Εδώ, η πρώτη παράμετρος του φίλτρου `concat` θα είναι η τιμή του `this.otherMsg`.
 
-### Asynchronous Components
+### Ασύγχρονα Στοιχεία
 
-It is common practice to bundle all the JavaScript into one file when building large single page applications. But when the file becomes too large, we may want to defer loading parts of our application for a faster initial load. However, this does pose some constraints on how the application architecture should be designed. It could be very tricky to figure out how to properly split up your JavaScript bundles.
+Είναι κοινή πρακτική να έχετε όλη την JavaScript σε ένα αρχείο όταν δημιουργείτε μεγάλες εφαρμογές μιας σελίδας. Αλλά, όταν το αρχείο γίνετε πάρα πολύ μεγάλο, ίσως χρειάζεται να αναβάλουμε την φόρτωση μερικών τμημάτων της εφαρμογής για ταχύτερο πρώτο φόρτωμα της. Ωστόσο, αυτό δημιουργεί κάποιους περιορισμούς στο πως η εφαρμογή θα πρέπει να σχεδιαστεί. Μπορεί να είναι πολύ δύσκολο να καταλάβει κάποιος πως να διασπάσει τα πακέτα της JavaScript.
 
-Well, with Vue.js we can already build our applications as decoupled components. If we can lazily load a dynamic component only when it is needed, wouldn't it be awesome? As a matter of fact, in 0.12 this would be trivially easy with the new Asynchronous Component feature.
+Λοιπόν, με το Vue.js μπορούμε ήδη να χτίσουμε την εφαρμογή μας ως αποσυνδεδεμένα στοιχεία. Δεν θα ήταν υπέροχο αν μπορούμε να φορτώσουμε βαρετά _(lazily)_ ένα δυναμικό στοιχείο όταν το χρειαζόμαστε; Στην πραγματικότητα, στην έκδοση 0.12 αυτό είναι πολύ εύκολο με το νέο χαρακτηριστικό ασύγχρονων στοιχείων.
 
-In 0.12, you can define a component as a factory function that asynchronously resolves a component definition (can be just a plain options object). Vue.js will only trigger the factory function when the component actually needs to be rendered, and will cache the result for future re-renders:
+Στην έκδοση 0.12 μπορείτε να ορίσετε ένα στοιχεί ως factory συνάρτηση που ασύγχρονα επιλύει μια δήλωση στοιχείου (Μπορεί να είναι ένα απλό αντικείμενο ιδιοτήτων). Το Vue.js θα εκτελέσει μόνο την factory συνάρτηση μόνο όταν το στοιχείο είναι απαραίτητο να απεικονιστεί, και θα αποθηκεύσει
+προσωρινά _(cache)_ το αποτέλεσμα  για μελλοντική απεικονίσεις.
 
 ``` js
 Vue.component('async-example', function (resolve, reject) {
   setTimeout(function () {
     resolve({
-      template: '<div>I am async!</div>'
+      template: '<div>Είμαι ασύγχρονο!</div>'
     })
   }, 1000)
 })
 ```
 
-It is up to you to decide how to load the component from the server, e.g. `$.getScript()` or require.js; but the recommended usage is to pair it up with Webpack's [Code Splitting feature](http://webpack.github.io/docs/code-splitting.html):
+Είναι στην δική σας ευκαίρια το πως θα φορτώσετε το στοιχείο από τον server, πχ.  `$.getScript()` ή require.js, αλλά συνίσταται η χρήση σε συνδυασμό με το [χαρακτηριστικό διαχωρισμού κώδικα](http://webpack.github.io/docs/code-splitting.html) του Webpack:
 
 ``` js
 Vue.component('async-webpack-example', function (resolve, reject) {
-  // In Webpack AMD like syntax indicates a code split point
+  // Στο συντακτικό τύπου AMD του Webpack υποδεικνύουμε ένα σημείο διαχωρισμού κώδικα.
   require(['./my-async-component'], resolve)
 })
 ```
 
-That's all you need to do. You can use the component just like before, without even thinking about it being async. Webpack will automatically split your final JavaScript into separate bundles with correct dependencies, and automatically load a bundle via Ajax when it is required. You can check out a fully functional example [here](https://github.com/vuejs/vue-webpack-example).
+Αυτό είναι όλο. Μπορείτε να χρησιμοποιήσετε το στοιχείο ακριβώς όπως και πριν, χωρίς καν να σκεφτείτε πως είναι ασύγχρονο το φόρτωμα του. Το Webpack αυτόματα θα διασπάσει τον τελικό κώδικα JavaScript σε διαφορετικά πακέτα με τις σωστές εξαρτήσεις, και αυτόματα θα φορτώσει τα πακέτα μέσω AJAX όταν αυτά χρειάζονται. Μπορείτε να δείτε ένα πλήρως λειτουργικό παράδειγμα [εδώ](https://github.com/vuejs/vue-webpack-example).
 
-### Improved Transition System
+### Βελτιωμένο Σύστημα Μεταβάσεων
 
-Vue.js' transition system is really easy to use, but in the past it has the limitation that you cannot mix CSS and JavaScript-based transitions together. In 0.12 that is no longer the case! The improved transition system now allows you to add JavaScript hooks to a CSS-based transition for additional control. The amount of hooks exposed have also been expanded to give you finer-grained control at every stage of the transition.
+Το σύστημα μεταβάσεων του Vue.js είναι πραγματικά πολύ εύκολο στην χρήση του, αλλά στο παρελθόν ήταν περιοριστικό με την ταυτόχρονη χρήση CSS και JavaScript μαζί. Στην έκδοση 0.12, αυτό πλέον δεν αποτελεί πρόβλημα! Το βελτιωμένο σύστημα μεταβάσεων τώρα σας επιτρέπει να εισάγετε σημεία ελέγχου _(hooks)_ στις μεταβάσεις που βασίζονται σε CSS για επιπλέον έλεγχο. Το πλήθος των διαθέσιμων σημείων ελέγχου έχει επίσης επεκταθεί για να δώσει ακόμα ποιο λεπτομερή έλεγχο σε κάθε τμήμα της μετάβασης.
 
-`v-repeat` now also ships with built-in support for staggering transitions. It is as simple as adding `stagger="100"` to your repeated element. It is also possible to define separate staggering for enter and leaving, or even dynamically calculate the staggering delay in a JavaScript hook.
+Η `v-repeat` πλέον έρχεται με προ-εγκατεστημένη υποστήριξη για κλιμακωτές μεταβάσεις. Είναι τόσο απλό όσο το να βάλετε το `stagger="100"` στα επαναλαμβανόμενα στοιχεία σας. Είναι επίσης εφικτό να ορίσετε ξεχωριστή κλιμάκωση για την είσοδο και την έξοδο, ή ακόμα να υπολογίσετε δυναμικά την καθυστέρηση κλιμάκωσης σε ένα σημείο ελέγχου JavaScript.
 
-For full details on the new transition system, check out the [updated guide](/guide/transitions.html).
+Για πλήρη αναφορά στο νέο σύστημα μεταβάσεων, ελέγξτε τον [ενημερωμένο οδηγό](/guide/transitions.html).
 
-### Performance Tuning
+### Βελτιωμένη Απόδοση
 
-Vue.js' precise dependency tracking makes it the one of the most efficient view layer for small hot updates, but there's always room for improvement. In 0.12, internal instance creation and compilation refactors have improved first-render performance for large lists by up to 40%. With proper `track-by` usage, [re-rendering with large, brand new dataset](http://vuejs.github.io/js-repaint-perfs/vue/) is also comparable to, or even faster than other Virtual-DOM based frameworks.
+Στο Vue.js' η ακριβής παρακολούθηση των εξαρτήσεων το κάνει ένα από τα ποιο αποδοτικά επίπεδα προβολής στα μικρής κλίμακας ενημερώσεις, αλλά πάντα υπάρχει χώρος για βελτίωση. Στην έκδοση 0.12, η εσωτερική δημιουργία στιγμιοτύπων και η επανεγγραφή του μεταγλωττιστή έχει βελτιώσει την πρώτη απεικόνιση σε μεγάλες λίστες μέχρι και 40%. Με σωστή χρήση της `track-by`, [η επαναλαμβανόμενη απεικόνιση με μεγάλα, ολοκαίνουρια σύνολα δεδομένων](http://vuejs.github.io/js-repaint-perfs/vue/) είναι επίσης συγκρίσιμη ή και ακόμα ταχύτερη από άλλες πλατφόρμες βασισμένες σε εικονικό DOM.
 
-### One More Thing...
+### Ένα τελευταίο πράγμα...
 
-With 0.12 out of the door, more efforts will now be spent on the official vue-router, a dedicated routing library for Vue.js with nested view matching, full transition support, and asynchronous data hooks. I have expressed that Vue.js core intends to stay as a no-frills, drop-in view layer library, and that will not change. The vue-router will be shipped separately and is totally optional, however you can expect it to work seamlessly with Vue.js core when you need it.
+Με την έκδοση 0.12 έξω από την πόρτα, οι μεγαλύτερη προσπάθεια τώρα θα καταναλωθεί στην επίσημη βιβλιοθήκη vue-router, μια βιβλιοθήκη αφοσιωμένη στο Vue.js με ενθυλακωμένα ταιριάσματα προβολών, υποστήριξη πλήρους μετάβασης και ασύγχρονα σημεία ελέγχου δεδομένων. Έχω εκφράσει πως ο πυρήνας του Vue.js σκοπεύει να παραμείνει ως no-frills, drop-in view layer library, και πως δεν θα αλλάξει. Η βιβλιοθήκη vue-router θα κυκλοφορήσει ξεχωριστά και θα είναι εντελώς προαιρετική, ωστόσο θα πρέπει να αναμένετε πως θα λειτουργήσει άψογα με τον πύρινα του Vue.js όταν θα το χρειάζεστε.
