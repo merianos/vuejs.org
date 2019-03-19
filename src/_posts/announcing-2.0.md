@@ -1,21 +1,21 @@
 ---
-title: Announcing Vue.js 2.0
+title: Ανακοίνωση του Vue.js 2.0
 date: 2016-04-27 13:33:00
 ---
 
-Today I am thrilled to announce the first public preview of Vue.js 2.0, which brings along many exciting improvements and new features. Let's take a peek at what's in store!
+Σήμερα είμαι ενθουσιασμένος που ανακοινώνω την πρώτη δημόσια προεπισκόπηση του Vue.js 2.0, που φέρνει μαζί της πολλές συναρπαστικές βελτιώσεις και νέα χαρακτηριστικά. Ας ρίξουμε δούμε λοιπόν τι έχει η νέα έκδοση!
 
 <!-- more -->
 
-## Even Leaner, Even Faster
+## Ακόμα ποιο λεπτό, Ακόμα ποιο γρήγορο
 
-Vue.js has always focused on staying light and fast, but 2.0 pushes it even further. The rendering layer is now based on a lightweight virtual-DOM implementation (based on [Snabbdom](https://github.com/paldepind/snabbdom)) that improves initial rendering speed and memory consumption by up to 2~4x in most scenarios (check out [these benchmarks](https://github.com/vuejs/vue/tree/next/benchmarks)). The template-to-virtual-DOM compiler and the runtime can be separated, so you can pre-compile templates and ship your app with only the runtime, which is less than 12KB min+gzip (as a reference, React 15 is 44KB min+gzip). The compiler also works in the browser, which means you can still drop in one script tag and start hacking, just like before. Even with the compiler included, the build is sitting at 17KB min+gzip, still lighter than the current 1.0 build.
+Το Vue.js από την αρχή είναι προσανατολισμένο προς το να παραμείνει ελαφρύ και γρήγορο, αλλά η έκδοση 2.0 το πάει ακόμα ποιο μακριά. Το επίπεδο απεικόνισης είναι πλέον βασισμένο στην ελαφριά υλοποίηση του εικονικού-DOM (που βασίζετε στο [Snabbdom](https://github.com/paldepind/snabbdom)) που βελτιώνει την ταχύτητα αρχικής απεικόνισης και την κατανάλωση μνήμης μέχρι 2~4x στα περισσότερα πιθανά σενάρια (δείτε τις [αναφορές απόδοσης](https://github.com/vuejs/vue/tree/next/benchmarks)). Ο μεταγλωττιστής του πρότυπου-σε-εικονικό-DOM και το περιβάλλον χρόνου εκτέλεσης μπορούν να διαχωριστούν, έτσι μπορείτε να προ-μεταγλωττίσετε τα πρότυπα _(templates)_ και να δημοσιεύσετε την εφαρμογή σας μόνο με το περιβάλλον χρόνου εκτέλεσης, που είναι μικρότερο από 12KB όταν είναι ελαχιστοποιημένο και σερβίρετε με gzip (ως αναφορά, το React 15 είναι 44KB ελαχιστοποιημένο και σερβιρισμένο με gzip). Επίσης, ο μεταγλωττιστής λειτουργεί και στον περιηγητή διαδικτύου, που σημαίνει πως μπορείτε ακόμα να βάλετε μια ετικέτα script στον κώδικα σας και να ξεκινήσετε να γράφετε κώδικα, ακριβώς όπως και πριν. Ακόμα και με τον μεταγλωττιστή μέσα, η εφαρμογή σας παραμένει στα 17KB ελαχιστοποιημένη και σερβιρισμένη με gzip, που είναι ακόμα ελαφρύτερη από την τρέχουσα έκδοση 1.0.
 
-## Not Your Average Virtual-DOM
+## Δεν είναι το Εικονικό-DOM του μέσου όρου
 
-Now, just virtual-DOM sounds boring because there are so many implementations out there - but this one is different. Combined with Vue's reactivity system, it provides optimized re-rendering out of the box without you having to do anything. Each component keeps track of its reactive dependencies during its render, so the system knows precisely when to re-render, and which components to re-render. No need for `shouldComponentUpdate` or immutable data structures - **it just works**.
+Τώρα, μόνο το εικονικό-DOM ακούγετε τόσο βαρετό, επειδή υπάρχουν τόσες πολλές υλοποιήσεις διαθέσιμες, αλλά υπάρχει μια υλοποίηση που διαφέρει. Συνδυασμένη με την διαδραστικότητα του Vue, παρέχει εξ ορισμού βελτιστοποιημένη επαναλαμβανόμενη απεικόνιση, χωρίς να πρέπει να κάνετε το παραμικρό. Κάθε στοιχείο _(component)_ διατηρεί τον έλεγχο όλων των διαδραστικών εξαρτήσεων του κατά την απεικόνιση, έτσι τ σύστημα γνωρίζει με ακρίβεια πότε πρέπει να ξανά απεικονιστεί, και ποια στοιχεία να απεικονίσει ξανά. Δεν υπάρχει πλέον ανάγκη για `shouldComponentUpdate` ή για αμετάβλητες δομές δεδομένων - **απλά λειτουργεί**.
 
-In addition, Vue 2.0 applies some advanced optimizations during the template-to-virtual-DOM compilation phase:
+Επιπλέον, το Vue 2.0 εφαρμόζει κάποιες εξειδικευμένες βελτιστοποιήσεις κατά την φάση μεταγλώττισης πρότυπο-σε-εικονικό-DOM:
 
 1. It detects static class names and attributes so that they are never diffed after the initial render.
 
